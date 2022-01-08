@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Delivery_Final_Function.Deliverytable>
+
+@{
+    ViewBag.Title = "Delivery Details";
+}
+
+<h2>Delivery Details</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+
+    @using (Html.BeginForm("Index", "Deliverytable", FormMethod.Get))
+    {
+<b>Search By:</b>@Html.RadioButton("SearchBy", "DeliveryPerson", true)<text>Delivery Person</text>
+                @Html.RadioButton("SearchBy", "DeliveredProducts")<text>Delivered Products</text><br />
+                @Html.TextBox("Search") <input type="submit" value("Search")/>
+    }
+    </p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryPerson)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Feedback)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveredProducts)
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="8">No rows match search criteria</td>
+        </tr>
+    }
+    else
+    {
+
+
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryPerson)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Feedback)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveredProducts)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.DeliveryID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.DeliveryID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.DeliveryID })
+            </td>
+        </tr>
+    }
+    }
+
+</table>
